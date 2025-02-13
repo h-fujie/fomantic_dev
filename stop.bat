@@ -1,0 +1,11 @@
+@echo off
+setlocal
+
+cd /d "%~dp0"
+
+rem ƒRƒ“ƒeƒi’âŽ~
+docker compose down
+
+pause
+
+endlocal

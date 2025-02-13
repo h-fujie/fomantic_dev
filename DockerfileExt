@@ -1,0 +1,8 @@
+FROM node:23.7-slim AS build-stage
+WORKDIR /ext
+RUN npm install jquery
+RUN npm install fomantic-ui
+
+FROM scratch AS export-stage
+COPY --from=build-stage /ext/node_modules/jquery/dist /jquery
+COPY --from=build-stage /ext/node_modules/fomantic-ui/dist /fomantic-ui

@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  web:
+    image: nginx:1.27.4
+    container_name: web
+    volumes:
+      - ./html:/usr/share/nginx/html
+    ports:
+      - 80:80
+  stub:
+    container_name: stub
+    build: .
+    ports:
+      - 8080:8080
+  doc:
+    image: swaggerapi/swagger-ui
+    container_name: doc
+    ports:
+      - 18080:8080
+    volumes: 
+      - ./gen/out/openapi/openapi.json:/openapi.json
+    environment: 
+      SWAGGER_JSON: /openapi.json
